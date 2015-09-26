@@ -1,0 +1,10 @@
+.svn/**/*
+.svn
+.svn/*
+build/
+dist/
+bin/
+nbproject
+latest.jar
+/ignore
+Debug/
