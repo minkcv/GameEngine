@@ -10,14 +10,19 @@
 
 namespace interactive
 {
-	InteractiveManager::InteractiveManager(sf::Window* window)
+	InteractiveManager::InteractiveManager(sf::RenderWindow* window)
 	{
-		//mainMenu = new MainMenu(this);
+		this->window = window;
+		gStack = new GameStack();
 		mainMenu = new MainMenu(this);
 		pauseMenu = new PauseMenu();
-		game = new Game(window);
 		currentInteractive = mainMenu;
-		this->window = window;
+		game = new Game(this);
+//		void* a = gStack->push(sizeof(int));
+//		int* b = new(a) int;
+//		*b = 10;
+//		printf("%d\n",*b);
+//		gStack->pop();
 	}
 
 	void InteractiveManager::update(double deltaT)
@@ -44,5 +49,19 @@ namespace interactive
 	{
 		currentInteractive = game;
 		window->setMouseCursorVisible(false);
+	}
+
+	sf::RenderWindow* InteractiveManager::getWindow()
+	{
+		return window;
+	}
+
+	GameStack* InteractiveManager::getGameStack()
+	{
+		return gStack;
+	}
+	InteractiveManager::~InteractiveManager()
+	{
+		delete gStack;
 	}
 }

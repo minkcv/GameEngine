@@ -69,5 +69,5 @@ namespace gmath
 	};
 }
 
-#include "matrix4.cpp"
+#include "matrix4.cpp" // this is how I chose to deal with template implementation
 #endif /* MATRIX_H_ */

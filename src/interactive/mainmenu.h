@@ -9,8 +9,12 @@
 #ifndef MAINMENU_H_
 #define MAINMENU_H_
 
+#include "../gengine/gamestack.h"
 #include "interactive.h"
 #include "interactivemanager.h"
+#include <SFML/Graphics.hpp>
+
+using namespace gengine;
 
 namespace interactive
 {
@@ -20,6 +24,9 @@ namespace interactive
 	{
 	private:
 		InteractiveManager* iManager;
+		GameStack* gStack;
+		sf::Font font;
+		sf::Text text;
 	public:
 		MainMenu(InteractiveManager* iManager);
 		void update(double deltaT);

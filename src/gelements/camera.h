@@ -8,7 +8,7 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace gelements
 {
@@ -18,10 +18,10 @@ namespace gelements
 		Camera();
 		void update(double deltaT);
 		void transform();
-		void setWindow(sf::Window* window);
+		void setWindow(sf::RenderWindow* window);
 		~Camera();
 	private:
-		sf::Window* window;
+		sf::RenderWindow* window;
 		float x, y, z;
 		float xVelocity, yVelocity, zVelocity;
 		float xRotation, yRotation;

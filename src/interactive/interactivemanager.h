@@ -11,13 +11,17 @@
 
 #include "pausemenu.h"
 #include "game.h"
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include "mainmenu.h"
 #include "interactive.h"
+#include "../gengine/gamestack.h"
+
+using namespace gengine;
 
 namespace interactive
 {
 	class MainMenu; // forward declaration because of circular dependency
+	class Game; // forward declaration because of circular dependency
 
 	class InteractiveManager
 	{
@@ -26,14 +30,18 @@ namespace interactive
 		Game* game;
 		MainMenu* mainMenu;
 		PauseMenu* pauseMenu;
-		sf::Window* window;
+		sf::RenderWindow* window;
+		GameStack* gStack;
 	public:
-		InteractiveManager(sf::Window* window);
+		InteractiveManager(sf::RenderWindow* window);
 		void update(double deltaT);
 		void render();
 		void startGame();
 		void pauseGame();
 		void resumeGame();
+		sf::RenderWindow* getWindow();
+		GameStack* getGameStack();
+		~InteractiveManager();
 	};
 }
 

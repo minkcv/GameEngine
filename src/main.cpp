@@ -40,6 +40,7 @@ void test()
 
 	Matrix4<double> mat4 = Matrix4<double>::mult(mat3, Matrix4<double>::transpose(Matrix4<double>::getIdentity()));
 	printf("%f\n", mat4.getValue(0, 2));
+	Vector3<int> v3(1, 2, 3);
 
 }
 
@@ -51,7 +52,7 @@ int main()
 	clock.restart();
 	sf::Time tick = sf::milliseconds(64);
 
-	sf::Window window(sf::VideoMode(800, 600), window_title);
+	sf::RenderWindow window(sf::VideoMode(800, 600), window_title);
 	window.setFramerateLimit(max_fps);
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
@@ -101,6 +102,6 @@ int main()
 		iManager->render();
 		window.display();
 	}
-
+	delete iManager;
 	return 0;
 }
