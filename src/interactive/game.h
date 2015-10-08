@@ -7,6 +7,7 @@
 
 #include "../gelements/camera.h"
 #include "../gelements/axes3d.h"
+#include "../gelements/box.h"
 #include "../gengine/gamestack.h"
 
 #ifndef GAME_H_
@@ -31,6 +32,7 @@ namespace interactive
 		GameStack* gStack;
 		Camera camera;
 		Axes3D axes;
+		Box* box;
 		sf::Image image;
 		sf::Image* image2;
 		GLuint texture_handle;
