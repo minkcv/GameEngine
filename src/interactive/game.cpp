@@ -41,9 +41,11 @@ Game::Game(InteractiveManager* iManager)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 	void* boxPtr = gStack->push(sizeof(Box));
-	box = new(boxPtr) Box(10, 4, 3, 4, 5, 3);
+	box = new(boxPtr) Box(10, 4, 3, 4, 5, 2);
 	void* pyramidPtr = gStack->push(sizeof(Pyramid));
 	pyramid = new(pyramidPtr) Pyramid(4, 0, 10, 4, 4);
+	void* spherePtr = gStack->push(sizeof(Sphere));
+	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
 }
 
 void Game::update(double deltaT)
@@ -91,6 +93,7 @@ void Game::render()
 	axes.render();
 	box->render();
 	pyramid->render();
+	sphere->render();
 }
 
 Game::~Game()

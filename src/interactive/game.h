@@ -9,6 +9,7 @@
 #include "../gelements/axes3d.h"
 #include "../gelements/box.h"
 #include "../gelements/pyramid.h"
+#include "../gelements/sphere.h"
 #include "../gengine/gamestack.h"
 
 #ifndef GAME_H_
@@ -35,6 +36,7 @@ namespace interactive
 		Axes3D axes;
 		Box* box;
 		Pyramid* pyramid;
+		Sphere* sphere;
 		sf::Image image;
 		sf::Image* image2;
 		GLuint texture_handle;

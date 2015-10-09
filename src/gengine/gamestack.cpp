@@ -23,6 +23,8 @@ bool GameStack::isEmpty()
 
 void* GameStack::push(size_t size)
 {
+	if(top + size > buffer + STACK_SIZE)
+		return 0;
 	if(topNode >= MAX_NODES - 1){
 		return 0;
 	}
