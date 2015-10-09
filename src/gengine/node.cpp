@@ -7,6 +7,7 @@
 
 
 #include "node.h"
+
 namespace gengine
 {
 Node::Node() : dataPtr(nullptr), dataSize(0)
@@ -25,5 +26,10 @@ void* Node::getData()
 size_t Node::getDataSize()
 {
 	return dataSize;
+}
+
+Node::~Node()
+{
+	dataPtr = nullptr;
 }
 }

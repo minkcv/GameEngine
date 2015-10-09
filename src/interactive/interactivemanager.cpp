@@ -62,6 +62,7 @@ namespace interactive
 	}
 	InteractiveManager::~InteractiveManager()
 	{
-		delete gStack;
+		game = nullptr;
+		gStack = nullptr;
 	}
 }

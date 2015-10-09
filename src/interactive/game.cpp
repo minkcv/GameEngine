@@ -42,6 +42,8 @@ Game::Game(InteractiveManager* iManager)
 
 	void* boxPtr = gStack->push(sizeof(Box));
 	box = new(boxPtr) Box(10, 4, 3, 4, 5, 3);
+	void* pyramidPtr = gStack->push(sizeof(Pyramid));
+	pyramid = new(pyramidPtr) Pyramid(4, 0, 10, 4, 4);
 }
 
 void Game::update(double deltaT)
@@ -58,7 +60,7 @@ void Game::render()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(90.0 / 2, 800.0/600.0, 1.0, 50.0);
-	//		glOrtho(-10, 10, -10, 10, -10, 10);
+	//glOrtho(-10, 10, -10, 10, -10, 10);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -88,9 +90,13 @@ void Game::render()
 	glDisable(GL_TEXTURE_2D);
 	axes.render();
 	box->render();
+	pyramid->render();
 }
 
 Game::~Game()
 {
+	box = nullptr;
+	pyramid = nullptr;
+	image2 = nullptr;
 }
 }

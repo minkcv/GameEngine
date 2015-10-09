@@ -20,6 +20,7 @@ public:
 	Node(void* data, size_t dataSize);
 	void* getData();
 	size_t getDataSize();
+	~Node();
 };
 };
 #endif /* NODE_H_ */

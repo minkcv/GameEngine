@@ -23,12 +23,11 @@ bool GameStack::isEmpty()
 
 void* GameStack::push(size_t size)
 {
-	if(topNode >= MAX_NODES){
+	if(topNode >= MAX_NODES - 1){
 		return 0;
 	}
-	Node newNode(top, size);
-	nodes[topNode] = newNode;
 	topNode++;
+	nodes[topNode] = Node(top, size);
 	top += size;
 	return top;
 }
@@ -49,6 +48,11 @@ void* GameStack::peek()
 }
 GameStack::~GameStack()
 {
+	while(! isEmpty())
+		pop();
+
 	free(buffer);
+	buffer = nullptr;
+	top = nullptr;
 }
 }
