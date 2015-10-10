@@ -53,10 +53,9 @@ int main()
 
 	sf::ContextSettings settings;
 	settings.depthBits = 24;
+	settings.antialiasingLevel = 4;
 	sf::RenderWindow window(sf::VideoMode(800, 600), window_title, sf::Style::Default, settings);
 	window.setFramerateLimit(max_fps);
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 	iManager = new InteractiveManager(&window);
 	while (window.isOpen())
 	{

@@ -17,11 +17,11 @@ Game::Game(InteractiveManager* iManager)
 	this->iManager = iManager;
 	gStack = iManager->getGameStack();
 	camera.setWindow(iManager->getWindow());
-	void* imagePtr = gStack->push(sizeof(sf::Image));
-	image2 = new(imagePtr) sf::Image();
-	if(!image2->loadFromFile("resources/image.png")){
-		printf("error loading image\n");
-	}
+//	void* imagePtr = gStack->push(sizeof(sf::Image));
+//	image2 = new(imagePtr) sf::Image();
+//	if(!image2->loadFromFile("resources/image.png")){
+//		printf("error loading image\n");
+//	}
 	if(!image.loadFromFile("resources/image.png")){
 		printf("error loading image\n");
 	}
@@ -46,6 +46,8 @@ Game::Game(InteractiveManager* iManager)
 	pyramid = new(pyramidPtr) Pyramid(4, 0, 10, 4, 4);
 	void* spherePtr = gStack->push(sizeof(Sphere));
 	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
+	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
+	uvSphere = new(uvSpherePtr) UVSphere(-50, 0, -5, 2, 20);
 }
 
 void Game::update(double deltaT)
@@ -94,6 +96,7 @@ void Game::render()
 	box->render();
 	pyramid->render();
 	sphere->render();
+	uvSphere->render();
 }
 
 Game::~Game()

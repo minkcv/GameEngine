@@ -7,6 +7,7 @@
 
 #include "pyramid.h"
 #include <SFML/OpenGL.hpp>
+#include <stdio.h>
 
 namespace gelements
 {

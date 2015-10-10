@@ -10,6 +10,7 @@
 #include "../gelements/box.h"
 #include "../gelements/pyramid.h"
 #include "../gelements/sphere.h"
+#include "../gelements/uvsphere.h"
 #include "../gengine/gamestack.h"
 
 #ifndef GAME_H_
@@ -37,6 +38,7 @@ namespace interactive
 		Box* box;
 		Pyramid* pyramid;
 		Sphere* sphere;
+		UVSphere* uvSphere;
 		sf::Image image;
 		sf::Image* image2;
 		GLuint texture_handle;
