@@ -15,11 +15,11 @@ namespace gengine
 class GameStack
 {
 private:
-	static const size_t STACK_SIZE = 256;
+	static const size_t STACK_SIZE = 1024;
 	const int MAX_NODES = 32;
 	Node nodes[16];
 	int topNode;
-	void* top;
+	size_t* top;
 	void* buffer;
 public:
 	GameStack();

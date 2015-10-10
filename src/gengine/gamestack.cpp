@@ -13,7 +13,7 @@ GameStack::GameStack() : topNode(-1)
 {
 	buffer = malloc(STACK_SIZE);
 	printf("allocated %lu bytes for game stack\n", STACK_SIZE);
-	top = buffer;
+	top = (size_t*)buffer;
 }
 
 bool GameStack::isEmpty()
@@ -23,9 +23,12 @@ bool GameStack::isEmpty()
 
 void* GameStack::push(size_t size)
 {
-	if(top + size > buffer + STACK_SIZE)
+	if(top + size > (size_t*)buffer + STACK_SIZE){
+		printf("stack overflow\n");
 		return 0;
+	}
 	if(topNode >= MAX_NODES - 1){
+		printf("out of nodes for stack\n");
 		return 0;
 	}
 	topNode++;
@@ -36,12 +39,13 @@ void* GameStack::push(size_t size)
 
 bool GameStack::pop()
 {
-	if(topNode < 0){
-		return 1;
+	if(isEmpty()){
+		printf("can't pop while stack empty\n");
+		return 0;
 	}
 	top -= nodes[topNode].getDataSize();
 	topNode--;
-	return 0;
+	return 1;
 }
 
 void* GameStack::peek()
