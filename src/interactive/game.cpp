@@ -17,11 +17,11 @@ Game::Game(InteractiveManager* iManager)
 	this->iManager = iManager;
 	gStack = iManager->getGameStack();
 	camera.setWindow(iManager->getWindow());
-//	void* imagePtr = gStack->push(sizeof(sf::Image));
-//	image2 = new(imagePtr) sf::Image();
-//	if(!image2->loadFromFile("resources/image.png")){
-//		printf("error loading image\n");
-//	}
+	void* imagePtr = gStack->push(sizeof(sf::Image));
+	image2 = new(imagePtr) sf::Image();
+	if(!image2->loadFromFile("resources/image.png")){
+		printf("error loading image\n");
+	}
 	if(!image.loadFromFile("resources/image.png")){
 		printf("error loading image\n");
 	}

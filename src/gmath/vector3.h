@@ -19,18 +19,41 @@ private:
 	T z;
 
 public:
+	/**
+	 * default constructor
+	 * default values are all 0
+	 */
 	Vector3();
 
+	/**
+	 * constructor with three values for x y z
+	 */
 	Vector3(T x, T y, T z);
 
+	/**
+	 * adds two vector's components and returns them in a new vector
+	 */
 	static Vector3<T> add(const Vector3<T>& v1, const Vector3<T>& v2);
 
+	/**
+	 * dot product of two vectors
+	 */
 	static T dot(const Vector3<T>& v1, const Vector3<T>& v2);
 
+	/**
+	 * cross product of two vectors
+	 */
 	static Vector3<T> cross(const Vector3<T>& v1, const Vector3<T>& v2);
 
-	static T normalize(const Vector3<T>& v);
+	/**
+	 * returns the vector divided by its own magnitude
+	 */
+	static Vector3<T> normalize(const Vector3<T>& v);
 
+	/**
+	 * returns the vector pointing in the opposite direction
+	 * in all dimensions
+	 */
 	static Vector3<T> invert(const Vector3<T>& v);
 
 	T getX();

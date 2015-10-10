@@ -20,29 +20,33 @@ using namespace gengine;
 
 namespace interactive
 {
-	class MainMenu; // forward declaration because of circular dependency
-	class Game; // forward declaration because of circular dependency
+class MainMenu; // forward declaration because of circular dependency
+class Game; // forward declaration because of circular dependency
 
-	class InteractiveManager
-	{
-	private:
-		Interactive* currentInteractive;
-		Game* game;
-		MainMenu* mainMenu;
-		PauseMenu* pauseMenu;
-		sf::RenderWindow* window;
-		GameStack* gStack;
-	public:
-		InteractiveManager(sf::RenderWindow* window);
-		void update(double deltaT);
-		void render();
-		void startGame();
-		void pauseGame();
-		void resumeGame();
-		sf::RenderWindow* getWindow();
-		GameStack* getGameStack();
-		~InteractiveManager();
-	};
+/**
+ * handles switching between different interactive components
+ * and serves as a central source for the game stack and window pointer
+ */
+class InteractiveManager
+{
+private:
+	Interactive* currentInteractive;
+	Game* game;
+	MainMenu* mainMenu;
+	PauseMenu* pauseMenu;
+	sf::RenderWindow* window;
+	GameStack* gStack;
+public:
+	InteractiveManager(sf::RenderWindow* window);
+	void update(double deltaT);
+	void render();
+	void startGame();
+	void pauseGame();
+	void resumeGame();
+	sf::RenderWindow* getWindow();
+	GameStack* getGameStack();
+	~InteractiveManager();
+};
 }
 
 #endif /* INTERACTIVEMANAGER_H_ */

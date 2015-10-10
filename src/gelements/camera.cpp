@@ -112,6 +112,6 @@ void Camera::setWindow(sf::RenderWindow* window)
 
 Camera::~Camera()
 {
-
+	window = nullptr;
 }
 }

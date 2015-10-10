@@ -17,8 +17,7 @@ class Matrix4
 private:
 	T m [4][4]; // the internal matrix
 	static bool iCreated; // has the identity matrix been setup?
-	//static T i [4][4]; // the identity matrix
-	static Matrix4<T> identity;
+	static Matrix4<T> identity; // the identity matrix
 public:
 	/**
 	 * default constructor
