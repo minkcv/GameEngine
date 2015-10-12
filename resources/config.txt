@@ -1,0 +1,5 @@
+windowWidth=1024
+windowHeight=768
+maxFPS=60
+antiAliasLevel=4
+windowTitle=Game Engine

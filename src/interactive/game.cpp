@@ -10,8 +10,6 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 
-namespace interactive
-{
 Game::Game(InteractiveManager* iManager)
 {
 	this->iManager = iManager;
@@ -47,7 +45,7 @@ Game::Game(InteractiveManager* iManager)
 	void* spherePtr = gStack->push(sizeof(Sphere));
 	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
 	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
-	uvSphere = new(uvSpherePtr) UVSphere(-50, 0, -5, 2, 20);
+	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, -5, 2, 20);
 }
 
 void Game::update(double deltaT)
@@ -104,5 +102,4 @@ Game::~Game()
 	box = nullptr;
 	pyramid = nullptr;
 	image2 = nullptr;
-}
 }

@@ -8,25 +8,23 @@
 #include "mainmenu.h"
 
 
-namespace interactive
+
+PauseMenu::PauseMenu()
 {
-	PauseMenu::PauseMenu()
-	{
 
-	}
+}
 
-	void PauseMenu::update(double deltaT)
-	{
+void PauseMenu::update(double deltaT)
+{
 
-	}
+}
 
-	void PauseMenu::render()
-	{
+void PauseMenu::render()
+{
 
-	}
+}
 
-	PauseMenu::~PauseMenu()
-	{
+PauseMenu::~PauseMenu()
+{
 
-	}
 }

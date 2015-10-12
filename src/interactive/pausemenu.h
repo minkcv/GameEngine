@@ -11,16 +11,14 @@
 
 #include "interactive.h"
 
-namespace interactive
+
+class PauseMenu : public Interactive
 {
-	class PauseMenu : public Interactive
-	{
-	public:
-		PauseMenu();
-		void update(double deltaT);
-		void render();
-		~PauseMenu();
-	};
-}
+public:
+	PauseMenu();
+	void update(double deltaT);
+	void render();
+	~PauseMenu();
+};
 
 #endif /* MENU_H_ */

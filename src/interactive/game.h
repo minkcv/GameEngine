@@ -24,30 +24,29 @@
 using namespace gelements;
 using namespace gengine;
 
-namespace interactive
-{
-	class InteractiveManager; // forward declaration because of circular dependency
 
-	class Game : public Interactive
-	{
-	private:
-		InteractiveManager* iManager;
-		GameStack* gStack;
-		Camera camera;
-		Axes3D axes;
-		Box* box;
-		Pyramid* pyramid;
-		Sphere* sphere;
-		UVSphere* uvSphere;
-		sf::Image image;
-		sf::Image* image2;
-		GLuint texture_handle;
-	public:
-		Game(InteractiveManager* iManager);
-		void update(double deltaT);
-		void render();
-		~Game();
-	};
-}
+class InteractiveManager; // forward declaration because of circular dependency
+
+class Game : public Interactive
+{
+private:
+	InteractiveManager* iManager;
+	GameStack* gStack;
+	Camera camera;
+	Axes3D axes;
+	Box* box;
+	Pyramid* pyramid;
+	Sphere* sphere;
+	UVSphere* uvSphere;
+	sf::Image image;
+	sf::Image* image2;
+	GLuint texture_handle;
+public:
+	Game(InteractiveManager* iManager);
+	void update(double deltaT);
+	void render();
+	~Game();
+};
+
 
 #endif /* GAME_H_ */

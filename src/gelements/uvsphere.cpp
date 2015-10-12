@@ -24,8 +24,8 @@ void UVSphere::update(double deltaT)
 
 void UVSphere::render()
 {
-	glRotatef(90, 1, 0, 0);
 	glTranslatef(x, y, z);
+	glRotatef(90, 1, 0, 0);
 	double thetarplusdelta;
 	double c=3.141592654/180.0;
 	double x1,y1,z1,phi0;
@@ -53,12 +53,12 @@ void UVSphere::render()
 	glColor3f(0, 1, 0);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex3d(0,0,radius); //Initial point
-	z=radius * sin(c*phi0);
+	z1=radius * sin(c*phi0);
 	for (double theta=-180; theta<=180; theta+=angleDelta){
 		double thetar=c*theta;
-		x=radius * sin(thetar)*cos(c*phi0);
-		y=radius * cos(thetar)*cos(c*phi0);
-		glVertex3d(x,y,z);
+		x1=radius * sin(thetar)*cos(c*phi0);
+		y1=radius * cos(thetar)*cos(c*phi0);
+		glVertex3d(x1,y1,z1);
 	}
 	glEnd();
 
@@ -66,15 +66,15 @@ void UVSphere::render()
 	glColor3f(1, 0, 0);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex3d(0,0,-radius); //Initial point
-	z=-radius * sin(c*phi0);
+	z1=-radius * sin(c*phi0);
 	for (double theta=-180; theta<=180; theta+=angleDelta){
 		double thetar=c*theta;
-		x=radius * sin(thetar)*cos(c*phi0);
-		y=radius * cos(thetar)*cos(c*phi0);
-		glVertex3d(x,y,z);
+		x1=radius * sin(thetar)*cos(c*phi0);
+		y1=radius * cos(thetar)*cos(c*phi0);
+		glVertex3d(x1,y1,z1);
 	}
 	glEnd();
-	glTranslatef(-x, -y, -z);
 	glRotatef(-90, 1, 0, 0);
+	glTranslatef(-x, -y, -z);
 }
 }

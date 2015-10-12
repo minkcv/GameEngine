@@ -7,8 +7,7 @@
 
 #include "mainmenu.h"
 #include <SFML/OpenGL.hpp>
-namespace interactive
-{
+
 MainMenu::MainMenu(InteractiveManager* iManager)
 {
 	this->iManager = iManager;
@@ -69,4 +68,4 @@ MainMenu::~MainMenu()
 {
 
 }
-}
+

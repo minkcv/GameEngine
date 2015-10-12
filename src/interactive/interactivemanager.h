@@ -18,8 +18,6 @@
 
 using namespace gengine;
 
-namespace interactive
-{
 class MainMenu; // forward declaration because of circular dependency
 class Game; // forward declaration because of circular dependency
 
@@ -47,6 +45,5 @@ public:
 	GameStack* getGameStack();
 	~InteractiveManager();
 };
-}
 
 #endif /* INTERACTIVEMANAGER_H_ */

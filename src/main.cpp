@@ -4,10 +4,11 @@
 #include "gmath/matrix4.h"
 #include "gmath/vector3.h"
 #include "interactive/interactivemanager.h"
+#include "gengine/configmanager.h"
+#include "gengine/windowmanager.h"
 
 using namespace std;
 using namespace gmath;
-using namespace interactive;
 
 bool fWasReleased = false;
 int max_fps = 60;
@@ -16,6 +17,7 @@ int screen_height = 600;
 string window_title = "SFML works!";
 sf::Uint32 window_style = sf::Style::Default;
 InteractiveManager* iManager;
+WindowManager* wManager;
 
 void test()
 {
@@ -46,53 +48,18 @@ void test()
 int main()
 {
 //	test();
+
+	ConfigManager::loadConfig();
 	sf::Clock clock;
 	sf::Time elapsed = clock.getElapsedTime();
 	clock.restart();
 	sf::Time tick = sf::milliseconds(64);
-
-	sf::ContextSettings settings;
-	settings.depthBits = 24;
-	settings.antialiasingLevel = 4;
-	sf::RenderWindow window(sf::VideoMode(800, 600), window_title, sf::Style::Default, settings);
-	window.setFramerateLimit(max_fps);
-	iManager = new InteractiveManager(&window);
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-			else if(event.type == sf::Event::Resized){
-//				glViewport(0, 0, event.size.width, event.size.height);
-			}
-
-		}
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			window.close();
-
-		if(sf::Keyboard::isKeyPressed((sf::Keyboard::F))){
-			if(fWasReleased){
-				switch(window_style) {
-				case sf::Style::Default:
-					window_style = sf::Style::Fullscreen;
-					break;
-				case sf::Style::Fullscreen:
-					window_style = sf::Style::None;
-					break;
-				case sf::Style::None:
-					window_style = sf::Style::Default;
-					break;
-				}
-				window.create(sf::VideoMode(screen_width, screen_height), window_title, window_style, settings);
-			}
-			fWasReleased = false;
-		}
-		else{
-			fWasReleased = true;
-		}
+	GameConfig gConfig = ConfigManager::getConfig();
+	wManager = new WindowManager(iManager, gConfig);
+	wManager->createWindow();
+	iManager = new InteractiveManager(wManager->getWindow());
+	while (wManager->windowIsOpen()) {
+		wManager->manageEvents();
 
 		elapsed = clock.getElapsedTime();
 		if(elapsed > tick) {
@@ -100,8 +67,9 @@ int main()
 			clock.restart();
 		}
 		iManager->render();
-		window.display();
+		wManager->displayWindow();
 	}
 	delete iManager;
+	delete wManager;
 	return 0;
 }
