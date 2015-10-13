@@ -24,12 +24,13 @@ void UVSphere::update(double deltaT)
 
 void UVSphere::render()
 {
-	glTranslatef(x, y, z);
 	glRotatef(90, 1, 0, 0);
+	glTranslatef(x, y, z);
 	double thetarplusdelta;
 	double c=3.141592654/180.0;
 	double x1,y1,z1,phi0;
 	phi0=60;
+	glColor3f(0, 0, 1);
 	glBegin(GL_QUAD_STRIP);
 	for (double phi=-phi0; phi<phi0; phi+=angleDelta) {
 		double phir=c*phi; //Phi in radians
@@ -74,7 +75,7 @@ void UVSphere::render()
 		glVertex3d(x1,y1,z1);
 	}
 	glEnd();
-	glRotatef(-90, 1, 0, 0);
 	glTranslatef(-x, -y, -z);
+	glRotatef(-90, 1, 0, 0);
 }
 }

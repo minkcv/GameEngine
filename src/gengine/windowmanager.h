@@ -12,6 +12,8 @@
 #ifndef WINDOWMANAGER_H_
 #define WINDOWMANAGER_H_
 
+class InteractiveManager; // forward declaration
+
 namespace gengine
 {
 class WindowManager
@@ -22,6 +24,8 @@ private:
 	sf::Uint32 window_style = sf::Style::Default;
 	InteractiveManager* iManager;
 	GameConfig gConfig;
+	sf::Font font;
+	sf::Text fpsText;
 public:
 	WindowManager(InteractiveManager* iManager, GameConfig& gConfig);
 	void createWindow();
@@ -29,6 +33,8 @@ public:
 	void manageEvents();
 	bool windowIsOpen();
 	void displayWindow();
+	void setShowMouse(bool showMouse);
+	void displayFPS(int fps);
 	sf::RenderWindow* getWindow();
 };
 }

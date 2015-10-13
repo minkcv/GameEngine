@@ -10,12 +10,6 @@
 using namespace std;
 using namespace gmath;
 
-bool fWasReleased = false;
-int max_fps = 60;
-int screen_width = 800;
-int screen_height = 600;
-string window_title = "SFML works!";
-sf::Uint32 window_style = sf::Style::Default;
 InteractiveManager* iManager;
 WindowManager* wManager;
 
@@ -48,16 +42,18 @@ void test()
 int main()
 {
 //	test();
-
 	ConfigManager::loadConfig();
+	GameConfig gConfig = ConfigManager::getConfig();
+	wManager = new WindowManager(iManager, gConfig);
+	wManager->createWindow();
+	iManager = new InteractiveManager(wManager);
+	int fpsCount = 0;
+	int fps = 0;
+	sf::Clock fpsClock;
 	sf::Clock clock;
 	sf::Time elapsed = clock.getElapsedTime();
 	clock.restart();
 	sf::Time tick = sf::milliseconds(64);
-	GameConfig gConfig = ConfigManager::getConfig();
-	wManager = new WindowManager(iManager, gConfig);
-	wManager->createWindow();
-	iManager = new InteractiveManager(wManager->getWindow());
 	while (wManager->windowIsOpen()) {
 		wManager->manageEvents();
 
@@ -67,6 +63,13 @@ int main()
 			clock.restart();
 		}
 		iManager->render();
+		fpsCount++;
+		if(fpsClock.getElapsedTime() > sf::seconds(1)) {
+			fps = fpsCount;
+			fpsCount = 0;
+			fpsClock.restart();
+		}
+		wManager->displayFPS(fps);
 		wManager->displayWindow();
 	}
 	delete iManager;

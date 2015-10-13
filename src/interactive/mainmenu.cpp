@@ -8,8 +8,9 @@
 #include "mainmenu.h"
 #include <SFML/OpenGL.hpp>
 
-MainMenu::MainMenu(InteractiveManager* iManager)
+MainMenu::MainMenu(InteractiveManager* iManager, WindowManager* wManager)
 {
+	this->wManager = wManager;
 	this->iManager = iManager;
 	this->gStack = iManager->getGameStack();
 	if (!font.loadFromFile("resources/DejaVuSansMono.ttf"))
@@ -59,9 +60,9 @@ void MainMenu::render()
 	}
 	glEnd();
 	sf::Texture::bind(NULL);
-	iManager->getWindow()->pushGLStates();
-	iManager->getWindow()->draw(text);
-	iManager->getWindow()->popGLStates();
+	wManager->getWindow()->pushGLStates();
+	wManager->getWindow()->draw(text);
+	wManager->getWindow()->popGLStates();
 }
 
 MainMenu::~MainMenu()

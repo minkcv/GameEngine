@@ -9,6 +9,9 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include "../gengine/configmanager.h"
+
+using namespace gengine;
 
 namespace gelements
 {
@@ -37,12 +40,13 @@ void Camera::update(double deltaT)
 	zVelocity = 0;
 
 	sf::Vector2i windowPosition = sf::Mouse::getPosition(*window);
-	mousedx = 400 - windowPosition.x;
-	mousedy = 300 - windowPosition.y;
+	mousedx = window->getSize().x / 2 - windowPosition.x;
+	mousedy = window->getSize().y / 2 - windowPosition.y;
+
 
 	oldMouseX = windowPosition.x;
 	oldMouseY = windowPosition.y;
-	sf::Vector2i zero(400, 300);
+	sf::Vector2i zero(window->getSize().x / 2, window->getSize().y / 2);
 	sf::Mouse::setPosition(zero, *window);
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))

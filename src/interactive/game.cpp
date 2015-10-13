@@ -9,12 +9,16 @@
 #include "game.h"
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
+#include "../gengine/configmanager.h"
 
-Game::Game(InteractiveManager* iManager)
+Game::Game(InteractiveManager* iManager, WindowManager* wManager)
 {
 	this->iManager = iManager;
+	this->wManager = wManager;
 	gStack = iManager->getGameStack();
-	camera.setWindow(iManager->getWindow());
+	gConfig = ConfigManager::getConfig();
+	camera.setWindow(wManager->getWindow());
+	aspectRatio = (float)(gConfig.getWindowWidth()) / (float)(gConfig.getWindowHeight());
 	void* imagePtr = gStack->push(sizeof(sf::Image));
 	image2 = new(imagePtr) sf::Image();
 	if(!image2->loadFromFile("resources/image.png")){
@@ -45,7 +49,7 @@ Game::Game(InteractiveManager* iManager)
 	void* spherePtr = gStack->push(sizeof(Sphere));
 	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
 	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
-	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, -5, 2, 20);
+	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, 0, 2, 20);
 }
 
 void Game::update(double deltaT)
@@ -61,7 +65,7 @@ void Game::render()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(90.0 / 2, 800.0/600.0, 1.0, 50.0);
+	gluPerspective(90.0 / 2, aspectRatio, 1.0, 50.0);
 	//glOrtho(-10, 10, -10, 10, -10, 10);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -92,8 +96,8 @@ void Game::render()
 	glDisable(GL_TEXTURE_2D);
 	axes.render();
 	box->render();
-	pyramid->render();
 	sphere->render();
+	pyramid->render();
 	uvSphere->render();
 }
 

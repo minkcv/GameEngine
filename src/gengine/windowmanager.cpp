@@ -6,12 +6,21 @@
  */
 
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include <string>
 #include "windowmanager.h"
 
 namespace gengine
 {
 WindowManager::WindowManager(InteractiveManager* iManager, GameConfig& gConfig) : window(nullptr), iManager(iManager), gConfig(gConfig)
 {
+	if (!font.loadFromFile("resources/DejaVuSansMono.ttf"))
+	{
+		printf("error loading font\n");
+	}
+	fpsText.setFont(font);
+	fpsText.setCharacterSize(24);
+	fpsText.setColor(sf::Color::White);
 }
 void WindowManager::createWindow()
 {
@@ -47,6 +56,23 @@ bool WindowManager::windowIsOpen()
 void WindowManager::displayWindow()
 {
 	window->display();
+}
+
+void WindowManager::setShowMouse(bool showMouse)
+{
+	window->setMouseCursorVisible(showMouse);
+}
+
+void WindowManager::displayFPS(int fps)
+{
+	fpsText.setColor(sf::Color::White);
+	fpsText.setPosition(80, 80);
+	std::string fpsString = "FPS: ";
+	fpsString += std::to_string(fps);
+	fpsText.setString(fpsString);
+	window->pushGLStates();
+	window->draw(fpsText);
+	window->popGLStates();
 }
 
 sf::RenderWindow* WindowManager::getWindow()

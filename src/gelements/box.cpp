@@ -1,5 +1,5 @@
 /*
- * Box.cpp
+ * box.cpp
  *
  *  Created on: Oct 7, 2015
  *      Author: wsmith

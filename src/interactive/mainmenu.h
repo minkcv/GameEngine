@@ -10,6 +10,7 @@
 #define MAINMENU_H_
 
 #include "../gengine/gamestack.h"
+#include "../gengine/windowmanager.h"
 #include "interactive.h"
 #include "interactivemanager.h"
 #include <SFML/Graphics.hpp>
@@ -22,11 +23,12 @@ class MainMenu : public Interactive
 {
 private:
 	InteractiveManager* iManager;
+	WindowManager* wManager;
 	GameStack* gStack;
 	sf::Font font;
 	sf::Text text;
 public:
-	MainMenu(InteractiveManager* iManager);
+	MainMenu(InteractiveManager* iManager, WindowManager* wManager);
 	void update(double deltaT);
 	void render();
 	~MainMenu();

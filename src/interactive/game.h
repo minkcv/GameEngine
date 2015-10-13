@@ -12,6 +12,8 @@
 #include "../gelements/sphere.h"
 #include "../gelements/uvsphere.h"
 #include "../gengine/gamestack.h"
+#include "../gengine/gameconfig.h"
+#include "../gengine/windowmanager.h"
 
 #ifndef GAME_H_
 #define GAME_H_
@@ -31,6 +33,8 @@ class Game : public Interactive
 {
 private:
 	InteractiveManager* iManager;
+	WindowManager* wManager;
+	GameConfig gConfig;
 	GameStack* gStack;
 	Camera camera;
 	Axes3D axes;
@@ -41,8 +45,9 @@ private:
 	sf::Image image;
 	sf::Image* image2;
 	GLuint texture_handle;
+	float aspectRatio;
 public:
-	Game(InteractiveManager* iManager);
+	Game(InteractiveManager* iManager, WindowManager* wManager);
 	void update(double deltaT);
 	void render();
 	~Game();

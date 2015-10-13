@@ -8,14 +8,14 @@
 #include "interactivemanager.h"
 #include <SFML/Window.hpp>
 
-InteractiveManager::InteractiveManager(sf::RenderWindow* window)
+InteractiveManager::InteractiveManager(WindowManager* wManager)
 {
-	this->window = window;
+	this->wManager = wManager;
 	gStack = new GameStack();
-	mainMenu = new MainMenu(this);
+	mainMenu = new MainMenu(this, wManager);
 	pauseMenu = new PauseMenu();
 	currentInteractive = mainMenu;
-	game = new Game(this);
+	game = new Game(this, wManager);
 	//		void* a = gStack->push(sizeof(int));
 	//		int* b = new(a) int;
 	//		*b = 10;
@@ -36,22 +36,17 @@ void InteractiveManager::render()
 void InteractiveManager::startGame()
 {
 	currentInteractive = game;
-	window->setMouseCursorVisible(false);
+	wManager->setShowMouse(false);
 }
 void InteractiveManager::pauseGame()
 {
 	currentInteractive = pauseMenu;
-	window->setMouseCursorVisible(true);
+	wManager->setShowMouse(true);
 }
 void InteractiveManager::resumeGame()
 {
 	currentInteractive = game;
-	window->setMouseCursorVisible(false);
-}
-
-sf::RenderWindow* InteractiveManager::getWindow()
-{
-	return window;
+	wManager->setShowMouse(false);
 }
 
 GameStack* InteractiveManager::getGameStack()
