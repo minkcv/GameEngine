@@ -1,5 +1,5 @@
 /*
- * point.h
+ * point3.h
  *
  *  Created on: Sep 4, 2015
  *      Author: wsmith
@@ -25,10 +25,14 @@ namespace gmath
 
 		static T dist(const Point3<T>& p1, const Point3<T>& p2);
 
-		static Point3<T> lerp(const Point3<T>& p1, const Point3<T>& p2);
+		T getX();
+
+		T getY();
+
+		T getZ();
 	};
 }
 
-
+#include "point3.cpp"
 
 #endif /* POINT_H_ */

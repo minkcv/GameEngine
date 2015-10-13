@@ -11,7 +11,7 @@
 
 namespace gelements
 {
-Sphere::Sphere(float x, float y, float z, int recursions) : x(x), y(y), z(z), recursions(recursions)
+Sphere::Sphere(float x, float y, float z, int recursions) : GameObject(x, y, z), recursions(recursions)
 {
 
 }
@@ -71,12 +71,12 @@ void Sphere::update(double deltaT)
 
 void Sphere::render()
 {
-	glTranslatef(x, y, z);
+	glTranslatef(position.getX(), position.getY(), position.getZ());
 	divideTriangle(baseTetrahedron[0], baseTetrahedron[1], baseTetrahedron[2], recursions);
 	divideTriangle(baseTetrahedron[3], baseTetrahedron[2], baseTetrahedron[1], recursions);
 	divideTriangle(baseTetrahedron[0], baseTetrahedron[3], baseTetrahedron[1], recursions);
 	divideTriangle(baseTetrahedron[0], baseTetrahedron[2], baseTetrahedron[3], recursions);
-	glTranslatef(-x, -y, -z);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 }
 }
 

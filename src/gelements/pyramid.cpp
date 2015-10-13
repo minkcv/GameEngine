@@ -13,7 +13,7 @@ namespace gelements
 {
 Pyramid::Pyramid(float x, float y, float z,
 		float l, float h)
-		: x(x), y(y), z(z), length(l), height(h)
+		: GameObject(x, y, z), length(l), height(h)
 {
 	center = length / 2;
 }
@@ -25,7 +25,7 @@ void Pyramid::update(double deltaT)
 
 void Pyramid::render()
 {
-	glTranslatef(x, y, z);
+	glTranslatef(position.getX(), position.getY(), position.getZ());
 	glBegin(GL_TRIANGLES);
 	{
 		//base
@@ -59,7 +59,7 @@ void Pyramid::render()
 		glVertex3f(center, height, center);
 	}
 	glEnd();
-	glTranslatef(-x, -y, -z);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 }
 
 Pyramid::~Pyramid()

@@ -8,12 +8,13 @@
 #ifndef SPHERE_H_
 #define SPHERE_H_
 
+#include "gameobject.h"
+
 namespace gelements
 {
-class Sphere
+class Sphere : protected GameObject
 {
 private:
-	float x, y, z;
 	int recursions;
 	float baseTetrahedron[4][3] = {
 			{0.0f, 0.0f, 1.0f},

@@ -8,9 +8,11 @@
 #ifndef AXES3D_H_
 #define AXES3D_H_
 
+#include "renderable.h"
+
 namespace gelements
 {
-	class Axes3D
+	class Axes3D : public Renderable
 	{
 	public:
 		Axes3D();

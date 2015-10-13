@@ -8,12 +8,13 @@
 #ifndef PYRAMID_H_
 #define PYRAMID_H_
 
+#include "gameobject.h"
+
 namespace gelements
 {
-class Pyramid
+class Pyramid : protected GameObject
 {
 private:
-	float x, y, z;
 	float center;
 	float length;
 	float height;

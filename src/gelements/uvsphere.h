@@ -8,12 +8,13 @@
 #ifndef UVSPHERE_H_
 #define UVSPHERE_H_
 
+#include "gameobject.h"
+
 namespace gelements
 {
-class UVSphere
+class UVSphere : protected GameObject
 {
 private:
-	float x, y, z;
 	float radius;
 	float angleDelta;
 public:

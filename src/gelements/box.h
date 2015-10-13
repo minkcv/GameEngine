@@ -8,12 +8,13 @@
 #ifndef BOX_H_
 #define BOX_H_
 
+#include "gameobject.h"
+
 namespace gelements
 {
-class Box
+class Box : protected GameObject
 {
 private:
-	float x, y, z;
 	float width, height, depth;
 public:
 	Box(float x, float y, float z,

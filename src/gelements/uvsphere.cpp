@@ -13,7 +13,7 @@
 namespace gelements
 {
 UVSphere::UVSphere(float x, float y, float z, float radius, float angleDelta)
-: x(x), y(y), z(z), radius(radius), angleDelta(angleDelta)
+: GameObject(x, y, z), radius(radius), angleDelta(angleDelta)
 {
 }
 
@@ -25,7 +25,7 @@ void UVSphere::update(double deltaT)
 void UVSphere::render()
 {
 	glRotatef(90, 1, 0, 0);
-	glTranslatef(x, y, z);
+	glTranslatef(position.getX(), position.getY(), position.getZ());
 	double thetarplusdelta;
 	double c=3.141592654/180.0;
 	double x1,y1,z1,phi0;
@@ -75,7 +75,12 @@ void UVSphere::render()
 		glVertex3d(x1,y1,z1);
 	}
 	glEnd();
-	glTranslatef(-x, -y, -z);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 	glRotatef(-90, 1, 0, 0);
+}
+
+UVSphere::~UVSphere()
+{
+
 }
 }

@@ -6,15 +6,17 @@
  */
 
 #include "box.h"
+#include "../gmath/point3.h"
 #include <SFML/OpenGL.hpp>
+
+using namespace gmath;
 
 namespace gelements
 {
 Box::Box(float x, float y, float z,
 		 float w, float h, float d)
-		: x(x), y(y), z(z), width(w), height(h), depth(d)
+		: GameObject(x, y, z), width(w), height(h), depth(d)
 {
-
 }
 
 void Box::update(double deltaT)
@@ -23,7 +25,7 @@ void Box::update(double deltaT)
 }
 void Box::render()
 {
-	glTranslatef(x, y, z);
+	glTranslatef(position.getX(), position.getY(), position.getZ());
 	glBegin(GL_QUADS);
 	{
 		glColor3f(1, 0, 0);
@@ -63,7 +65,7 @@ void Box::render()
 		glVertex3f(width, depth, 0);
 	}
 	glEnd();
-	glTranslatef(-x, -y, -z);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 }
 Box::~Box()
 {
