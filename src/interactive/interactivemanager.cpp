@@ -55,6 +55,8 @@ GameStack* InteractiveManager::getGameStack()
 }
 InteractiveManager::~InteractiveManager()
 {
+	delete game;
+	delete gStack;
 	game = nullptr;
 	gStack = nullptr;
 }

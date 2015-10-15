@@ -11,6 +11,7 @@
 #include "../gelements/pyramid.h"
 #include "../gelements/sphere.h"
 #include "../gelements/uvsphere.h"
+#include "../gelements/objmesh.h"
 #include "../gengine/gamestack.h"
 #include "../gengine/gameconfig.h"
 #include "../gengine/windowmanager.h"
@@ -46,6 +47,7 @@ private:
 	sf::Image* image2;
 	GLuint texture_handle;
 	float aspectRatio;
+	ObjMesh objMesh;
 public:
 	Game(InteractiveManager* iManager, WindowManager* wManager);
 	void update(double deltaT);

@@ -66,7 +66,7 @@ void WindowManager::setShowMouse(bool showMouse)
 void WindowManager::displayFPS(int fps)
 {
 	fpsText.setColor(sf::Color::White);
-	fpsText.setPosition(80, 80);
+	fpsText.setPosition(0, 0);
 	std::string fpsString = "FPS: ";
 	fpsString += std::to_string(fps);
 	fpsText.setString(fpsString);

@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "../gengine/configmanager.h"
 
-Game::Game(InteractiveManager* iManager, WindowManager* wManager)
+Game::Game(InteractiveManager* iManager, WindowManager* wManager) : objMesh(-5, 0, -13)
 {
 	this->iManager = iManager;
 	this->wManager = wManager;
@@ -50,6 +50,8 @@ Game::Game(InteractiveManager* iManager, WindowManager* wManager)
 	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
 	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
 	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, 0, 2, 20);
+
+	objMesh.loadObj("resources/complex.obj");
 }
 
 void Game::update(double deltaT)
@@ -99,6 +101,7 @@ void Game::render()
 	sphere->render();
 	pyramid->render();
 	uvSphere->render();
+	objMesh.render();
 }
 
 Game::~Game()

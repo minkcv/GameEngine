@@ -21,6 +21,7 @@ MainMenu::MainMenu(InteractiveManager* iManager, WindowManager* wManager)
 	text.setString("Press Enter\n\n Move with WASD, Ctrl, Space");
 	text.setCharacterSize(24);
 	text.setColor(sf::Color::White);
+	text.setPosition(40, 40);
 }
 
 void MainMenu::update(double deltaT)
