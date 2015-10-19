@@ -11,12 +11,18 @@
 
 namespace gelements
 {
+float const Sphere::baseTetrahedron[4][3] = {
+		{0.0f, 0.0f, 1.0f},
+		{0.0f, 0.942809f, -0.33333f},
+		{-0.816497f, -0.471405f, -0.333333f},
+		{0.816497f, -0.471405f, -0.333333f}
+};
 Sphere::Sphere(float x, float y, float z, int recursions) : GameObject(x, y, z), recursions(recursions)
 {
 
 }
 
-void Sphere::divideTriangle(float a[3], float b[3], float c[3], int m)
+void Sphere::divideTriangle(const float a[3], const float b[3], const float c[3], int m)
 {
 	float v1[3];
 	float v2[3];

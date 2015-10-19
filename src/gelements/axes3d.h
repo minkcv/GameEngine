@@ -21,6 +21,4 @@ namespace gelements
 	};
 }
 
-
-
 #endif /* AXES_H_ */

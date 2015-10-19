@@ -14,6 +14,8 @@ namespace gengine
 {
 WindowManager::WindowManager(InteractiveManager* iManager, GameConfig& gConfig) : window(nullptr), iManager(iManager), gConfig(gConfig)
 {
+	windowStyle = sf::Style::Default;
+	windowTitle = "Game Engine";
 	if (!font.loadFromFile("resources/DejaVuSansMono.ttf"))
 	{
 		printf("error loading font\n");

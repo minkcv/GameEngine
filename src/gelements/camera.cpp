@@ -25,6 +25,9 @@ Camera::Camera()
 	zVelocity = 0;
 	xRotation = 0;
 	yRotation = 0;
+	baseMoveSpeed = 0.5f;
+	fastMoveSpeed = 1.0f;
+	mouseSensitivity = 0.05f;
 	moveSpeed = baseMoveSpeed;
 	oldMouseX = 0;
 	oldMouseY = 0;

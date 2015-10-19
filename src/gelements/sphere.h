@@ -16,21 +16,13 @@ class Sphere : protected GameObject
 {
 private:
 	int recursions;
-	float baseTetrahedron[4][3] = {
-			{0.0f, 0.0f, 1.0f},
-			{0.0f, 0.942809f, -0.33333f},
-			{-0.816497f, -0.471405f, -0.333333f},
-			{0.816497f, -0.471405f, -0.333333f}
-	};
-	void divideTriangle(float a[3], float b[3], float c[3], int m);
+	void divideTriangle(const float a[3], const float b[3], const float c[3], int m);
 	void normalize(float p[3]);
 public:
+	static float const baseTetrahedron[4][3]; // initialized in source file
 	Sphere(float x, float y, float z, int recursions);
 	void update(double deltaT);
 	void render();
 };
 }
-
-
-
 #endif /* SPHERE_H_ */

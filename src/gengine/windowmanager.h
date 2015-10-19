@@ -20,8 +20,8 @@ class WindowManager
 {
 private:
 	sf::RenderWindow* window;
-	std::string window_title = "SFML works!";
-	sf::Uint32 window_style = sf::Style::Default;
+	std::string windowTitle;
+	sf::Uint32 windowStyle;
 	InteractiveManager* iManager;
 	GameConfig gConfig;
 	sf::Font font;

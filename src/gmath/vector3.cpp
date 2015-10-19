@@ -7,6 +7,7 @@
 
 #ifndef VECTOR3_CPP_
 #define VECTOR3_CPP_
+
 #include <cmath>
 #include "vector3.h"
 

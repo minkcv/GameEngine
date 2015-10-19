@@ -24,9 +24,9 @@ private:
 	float xVelocity, yVelocity, zVelocity; // movement added to position each update
 	float xRotation, yRotation; // rotation of camera, vertical, horizontal respectively
 	float moveSpeed; // how much velocity currently is;
-	float baseMoveSpeed = 0.5f; // what moveSpeed is normally
-	float fastMoveSpeed = 1.0f; // when you want to go fast
-	float mouseSensitivity = 0.05f; // how fast to rotate based on mouse movement
+	float baseMoveSpeed; // what moveSpeed is normally
+	float fastMoveSpeed; // when you want to go fast
+	float mouseSensitivity; // how fast to rotate based on mouse movement
 	int oldMouseX, oldMouseY; // mouse x and y from last update
 	int mousedx, mousedy; // change in mouse position from last update
 public:
