@@ -19,11 +19,6 @@ Game::Game(InteractiveManager* iManager, WindowManager* wManager) : objMesh(-5, 
 	gConfig = ConfigManager::getConfig();
 	camera.setWindow(wManager->getWindow());
 	aspectRatio = (float)(gConfig.getWindowWidth()) / (float)(gConfig.getWindowHeight());
-	void* imagePtr = gStack->push(sizeof(sf::Image));
-	image2 = new(imagePtr) sf::Image();
-	if(!image2->loadFromFile("resources/image.png")){
-		printf("error loading image\n");
-	}
 	if(!image.loadFromFile("resources/image.png")){
 		printf("error loading image\n");
 	}
@@ -108,5 +103,4 @@ Game::~Game()
 {
 	box = nullptr;
 	pyramid = nullptr;
-	image2 = nullptr;
 }

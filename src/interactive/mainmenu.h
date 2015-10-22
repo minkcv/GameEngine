@@ -27,6 +27,8 @@ private:
 	GameStack* gStack;
 	sf::Font font;
 	sf::Text text;
+	sf::Image image;
+	sf::Texture texture;
 public:
 	MainMenu(InteractiveManager* iManager, WindowManager* wManager);
 	void update(double deltaT);

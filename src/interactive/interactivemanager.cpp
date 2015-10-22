@@ -16,11 +16,6 @@ InteractiveManager::InteractiveManager(WindowManager* wManager)
 	pauseMenu = new PauseMenu();
 	currentInteractive = mainMenu;
 	game = new Game(this, wManager);
-	//		void* a = gStack->push(sizeof(int));
-	//		int* b = new(a) int;
-	//		*b = 10;
-	//		printf("%d\n",*b);
-	//		gStack->pop();
 }
 
 void InteractiveManager::update(double deltaT)

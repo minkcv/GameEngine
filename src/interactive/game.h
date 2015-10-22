@@ -44,7 +44,6 @@ private:
 	Sphere* sphere;
 	UVSphere* uvSphere;
 	sf::Image image;
-	sf::Image* image2;
 	GLuint texture_handle;
 	float aspectRatio;
 	ObjMesh objMesh;
