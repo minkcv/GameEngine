@@ -6,12 +6,14 @@
 #include "interactive/interactivemanager.h"
 #include "gengine/configmanager.h"
 #include "gengine/windowmanager.h"
+#include "gengine/physicsmanager.h"
 
 using namespace std;
 using namespace gmath;
 
 InteractiveManager* iManager;
 WindowManager* wManager;
+PhysicsManager* pManager;
 
 void test()
 {
@@ -42,11 +44,14 @@ void test()
 int main()
 {
 //	test();
+	pManager = new PhysicsManager();
+//	pManager->testPhysics();
+//	pManager->cleanup();
 	ConfigManager::loadConfig();
 	GameConfig gConfig = ConfigManager::getConfig();
 	wManager = new WindowManager(iManager, gConfig);
 	wManager->createWindow();
-	iManager = new InteractiveManager(wManager);
+	iManager = new InteractiveManager(wManager, pManager);
 	int fpsCount = 0;
 	int fps = 0;
 	sf::Clock fpsClock;
@@ -74,5 +79,6 @@ int main()
 	}
 	delete iManager;
 	delete wManager;
+	//delete pManager;
 	return 0;
 }

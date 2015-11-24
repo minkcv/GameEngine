@@ -5,6 +5,9 @@
  *      Author: wsmith
  */
 
+#ifndef GAME_H_
+#define GAME_H_
+
 #include "../gelements/camera.h"
 #include "../gelements/axes3d.h"
 #include "../gelements/box.h"
@@ -12,13 +15,11 @@
 #include "../gelements/sphere.h"
 #include "../gelements/uvsphere.h"
 #include "../gelements/objmesh.h"
+#include "../gelements/physicsbox.h"
 #include "../gengine/gamestack.h"
 #include "../gengine/gameconfig.h"
 #include "../gengine/windowmanager.h"
-
-#ifndef GAME_H_
-#define GAME_H_
-
+#include "../gengine/physicsmanager.h"
 #include "interactive.h"
 #include "interactivemanager.h"
 #include <SFML/Graphics.hpp>
@@ -35,6 +36,7 @@ class Game : public Interactive
 private:
 	InteractiveManager* iManager;
 	WindowManager* wManager;
+	PhysicsManager* pManager;
 	GameConfig gConfig;
 	GameStack* gStack;
 	Camera camera;
@@ -47,8 +49,9 @@ private:
 	GLuint texture_handle;
 	float aspectRatio;
 	ObjMesh objMesh;
+	PhysicsBox pBox;
 public:
-	Game(InteractiveManager* iManager, WindowManager* wManager);
+	Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager);
 	void update(double deltaT);
 	void render();
 	~Game();

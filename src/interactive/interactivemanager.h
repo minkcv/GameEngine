@@ -16,6 +16,7 @@
 #include "interactive.h"
 #include "../gengine/gamestack.h"
 #include "../gengine/windowmanager.h"
+#include "../gengine/physicsmanager.h"
 
 using namespace gengine;
 
@@ -36,7 +37,7 @@ private:
 	WindowManager* wManager;
 	GameStack* gStack;
 public:
-	InteractiveManager(WindowManager* wManager);
+	InteractiveManager(WindowManager* wManager, PhysicsManager* pManager);
 	void update(double deltaT);
 	void render();
 	void startGame();

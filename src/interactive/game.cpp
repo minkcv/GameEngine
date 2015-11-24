@@ -11,10 +11,11 @@
 #include <SFML/Graphics.hpp>
 #include "../gengine/configmanager.h"
 
-Game::Game(InteractiveManager* iManager, WindowManager* wManager) : objMesh(-5, 0, -13)
+Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager) : objMesh(-5, 0, -13), pBox(10, 10, 10, 5, 5, 5)
 {
 	this->iManager = iManager;
 	this->wManager = wManager;
+	this->pManager = pManager;
 	gStack = iManager->getGameStack();
 	gConfig = ConfigManager::getConfig();
 	camera.setWindow(wManager->getWindow());
@@ -47,11 +48,13 @@ Game::Game(InteractiveManager* iManager, WindowManager* wManager) : objMesh(-5, 
 	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, 0, 2, 20);
 
 	objMesh.loadObj("resources/complex.obj");
+	pManager->addPhysicsBox(&pBox);
 }
 
 void Game::update(double deltaT)
 {
 	camera.update(deltaT);
+	pManager->update();
 }
 
 void Game::render()
@@ -97,6 +100,7 @@ void Game::render()
 	pyramid->render();
 	uvSphere->render();
 	objMesh.render();
+	pBox.render();
 }
 
 Game::~Game()

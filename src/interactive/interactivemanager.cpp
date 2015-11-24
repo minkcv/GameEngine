@@ -6,16 +6,17 @@
  */
 
 #include "interactivemanager.h"
+
 #include <SFML/Window.hpp>
 
-InteractiveManager::InteractiveManager(WindowManager* wManager)
+InteractiveManager::InteractiveManager(WindowManager* wManager, PhysicsManager* pManager)
 {
 	this->wManager = wManager;
 	gStack = new GameStack();
 	mainMenu = new MainMenu(this, wManager);
 	pauseMenu = new PauseMenu();
 	currentInteractive = mainMenu;
-	game = new Game(this, wManager);
+	game = new Game(this, wManager, pManager);
 }
 
 void InteractiveManager::update(double deltaT)

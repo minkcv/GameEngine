@@ -20,6 +20,7 @@ class GameObject : public Updateable, public Renderable
 {
 public:
 	GameObject(float x, float y, float z);
+	void setPosition(float x, float y, float z);
 protected:
 	Point3<float> position;
 };
