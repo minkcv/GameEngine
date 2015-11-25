@@ -8,6 +8,7 @@
 #include "physicsmanager.h"
 #include "btBulletDynamicsCommon.h"
 #include "gamemotionstate.hpp"
+#include "physicsdebugdrawer.hpp"
 
 namespace gengine
 {
@@ -22,8 +23,12 @@ PhysicsManager::PhysicsManager()
 
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
 
+	PhysicsDebugDrawer* debugDrawer = new PhysicsDebugDrawer();
+	dynamicsWorld->setDebugDrawer(debugDrawer);
+	dynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawAabb);
+
 	//create test shapes and rigid bodies
-	groundShape = new btBoxShape(btVector3(20, 2, 20));
+	groundShape = new btBoxShape(btVector3(50, 2, 50));
 	collisionShapes.push_back(groundShape);
 	btTransform groundTransform;
 	groundTransform.setIdentity();
@@ -98,7 +103,7 @@ btMotionState* PhysicsManager::addPhysicsBox(PhysicsBox* pb)
 	if (isDynamic)
 		colShape->calculateLocalInertia(mass,localInertia);
 
-	startTransform.setOrigin(btVector3(2,10,0));
+	startTransform.setOrigin(btVector3(pb->getX(), pb->getY(), pb->getZ()));
 
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	btMotionState* motionState = new GameMotionState(startTransform, pb);
@@ -134,6 +139,11 @@ void PhysicsManager::testPhysics()
 void PhysicsManager::update()
 {
 	dynamicsWorld->stepSimulation(1.f/60.f, 10);
+}
+
+void PhysicsManager::debugDrawWorld()
+{
+	dynamicsWorld->debugDrawWorld();
 }
 
 void PhysicsManager::cleanup()

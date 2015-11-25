@@ -11,7 +11,8 @@
 #include <SFML/Graphics.hpp>
 #include "../gengine/configmanager.h"
 
-Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager) : objMesh(-5, 0, -13), pBox(10, 10, 10, 5, 5, 5)
+Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager)
+	: objMesh(-5, 0, -13), pBox(10, 10, 10, 5, 5, 5), pBox2(10, 20, 18, 4, 4, 4)
 {
 	this->iManager = iManager;
 	this->wManager = wManager;
@@ -47,8 +48,9 @@ Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager
 	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
 	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, 0, 2, 20);
 
-	objMesh.loadObj("resources/complex.obj");
+//	objMesh.loadObj("resources/complex.obj");
 	pManager->addPhysicsBox(&pBox);
+	pManager->addPhysicsBox(&pBox2);
 }
 
 void Game::update(double deltaT)
@@ -95,12 +97,14 @@ void Game::render()
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisable(GL_TEXTURE_2D);
 	axes.render();
-	box->render();
-	sphere->render();
-	pyramid->render();
-	uvSphere->render();
-	objMesh.render();
+	pManager->debugDrawWorld();
+//	box->render();
+//	sphere->render();
+//	pyramid->render();
+//	uvSphere->render();
+//	objMesh.render();
 	pBox.render();
+	pBox2.render();
 }
 
 Game::~Game()

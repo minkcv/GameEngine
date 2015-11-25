@@ -28,8 +28,9 @@ private:
 public:
 	PhysicsManager();
 	void testPhysics();
-	void update();
 	btMotionState* addPhysicsBox(PhysicsBox* pb);
+	void update();
+	void debugDrawWorld();
 	void cleanup();
 };
 }

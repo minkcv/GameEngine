@@ -50,6 +50,7 @@ private:
 	float aspectRatio;
 	ObjMesh objMesh;
 	PhysicsBox pBox;
+	PhysicsBox pBox2;
 public:
 	Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager);
 	void update(double deltaT);

@@ -10,6 +10,8 @@
 
 #include "btBulletDynamicsCommon.h"
 #include "../gelements/gameobject.h"
+#include <SFML/OpenGL.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 using namespace gelements;
 
@@ -31,6 +33,11 @@ public:
 	{
 		if(gObject == nullptr)
 			return;
+
+		//convert from bullet quaternion to glm quaternion
+		btQuaternion rotation = worldTransform.getRotation();
+		glm::quat glmrotation(-rotation.getZ(), rotation.getY(), -rotation.getX(), rotation.getW());
+		gObject->setRotation(glmrotation);
 
 		btVector3 position = worldTransform.getOrigin();
 		gObject->setPosition(position.getX(), position.getY(), position.getZ());
