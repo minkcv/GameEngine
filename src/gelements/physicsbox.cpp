@@ -16,7 +16,7 @@ using namespace gmath;
 namespace gelements
 {
 PhysicsBox::PhysicsBox(float x, float y, float z, float w, float h, float d)
-: GameObject(x, y, z), width(w), height(h), depth(d), mass(1.0f)
+: GameObject(x, y, z), width(w), height(h), depth(d), mass(10.0f), rigidBody(nullptr)
 {
 
 }
@@ -71,6 +71,16 @@ void PhysicsBox::render()
 	glEnd();
 	glMultTransposeMatrixf(glm::value_ptr(glm::mat4_cast(rotation)));
 	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
+}
+
+void PhysicsBox::applyCentralImpulse(float x, float y, float z)
+{
+	rigidBody->applyCentralImpulse(btVector3(x, y, z));
+}
+
+void PhysicsBox::setRigidBody(btRigidBody* rb)
+{
+	rigidBody = rb;
 }
 
 float PhysicsBox::getWidth() { return width; }

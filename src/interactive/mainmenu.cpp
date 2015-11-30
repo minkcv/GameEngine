@@ -44,22 +44,22 @@ void MainMenu::render()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	glEnable(GL_TEXTURE_2D);
-	sf::Texture::bind(&texture);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glBegin(GL_QUADS);
-	{
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(-5.0f, -5.0f, 0.0f);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(-5.0f, 5.0f, 0.0f);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(5.0f, 5.0f, 0.0f);
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(5.0f, -5.0f, 0.0f);
-	}
-	glEnd();
-	sf::Texture::bind(NULL);
+//	glEnable(GL_TEXTURE_2D);
+//	sf::Texture::bind(&texture);
+//	glColor3f(1.0f, 0.0f, 0.0f);
+//	glBegin(GL_QUADS);
+//	{
+//		glTexCoord2f(1.0f, 1.0f);
+//		glVertex3f(-5.0f, -5.0f, 0.0f);
+//		glTexCoord2f(1.0f, 0.0f);
+//		glVertex3f(-5.0f, 5.0f, 0.0f);
+//		glTexCoord2f(0.0f, 0.0f);
+//		glVertex3f(5.0f, 5.0f, 0.0f);
+//		glTexCoord2f(0.0f, 1.0f);
+//		glVertex3f(5.0f, -5.0f, 0.0f);
+//	}
+//	glEnd();
+//	sf::Texture::bind(NULL);
 	wManager->getWindow()->pushGLStates();
 	wManager->getWindow()->draw(text);
 	wManager->getWindow()->popGLStates();

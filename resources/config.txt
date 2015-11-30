@@ -1,5 +1,5 @@
-windowWidth=800
-windowHeight=600
+windowWidth=1024
+windowHeight=786
 maxFPS=60
 antiAliasLevel=4
 windowTitle=Game Engine

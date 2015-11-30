@@ -83,10 +83,9 @@ PhysicsManager::PhysicsManager()
 	}
 }
 
-btMotionState* PhysicsManager::addPhysicsBox(PhysicsBox* pb)
+//create a dynamic rigidbody
+void PhysicsManager::addPhysicsBox(PhysicsBox* pb)
 {
-	//create a dynamic rigidbody
-
 	btCollisionShape* colShape = new btBoxShape(btVector3(pb->getWidth(), pb->getHeight(), pb->getDepth()));
 	collisionShapes.push_back(colShape);
 
@@ -111,7 +110,7 @@ btMotionState* PhysicsManager::addPhysicsBox(PhysicsBox* pb)
 	btRigidBody* body = new btRigidBody(rbInfo);
 
 	dynamicsWorld->addRigidBody(body);
-	return motionState;
+	pb->setRigidBody(body);
 }
 
 void PhysicsManager::testPhysics()

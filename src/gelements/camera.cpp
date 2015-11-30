@@ -15,11 +15,8 @@ using namespace gengine;
 
 namespace gelements
 {
-Camera::Camera()
+Camera::Camera() : GameObject(0, 0, 0)
 {
-	x = 0;
-	y = 0;
-	z = 0;
 	xVelocity = 0;
 	yVelocity = 0;
 	zVelocity = 0;
@@ -82,9 +79,9 @@ void Camera::update(double deltaT)
 		yVelocity -= moveSpeed;
 	}
 
-	x += xVelocity;
-	y += yVelocity;
-	z += zVelocity;
+	position.setX(position.getX() + xVelocity);
+	position.setY(position.getY() + yVelocity);
+	position.setZ(position.getZ() + zVelocity);
 
 	xRotation += -mousedx * mouseSensitivity;
 	yRotation += -mousedy * mouseSensitivity;
@@ -105,11 +102,15 @@ void Camera::update(double deltaT)
 //			printf("xyz pos: %f, %f, %f\n", x, y, z);
 }
 
+void Camera::render(){};
+
+float Camera::getXRotation() { return xRotation; }
+
 void Camera::transform()
 {
 	glRotatef(yRotation, 1, 0, 0);
 	glRotatef(xRotation, 0, 1, 0);
-	glTranslatef(-x, -y, -z);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 }
 
 void Camera::setWindow(sf::RenderWindow* window)

@@ -51,6 +51,7 @@ private:
 	ObjMesh objMesh;
 	PhysicsBox pBox;
 	PhysicsBox pBox2;
+	std::vector<PhysicsBox*> pBoxes;
 public:
 	Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager);
 	void update(double deltaT);

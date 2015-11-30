@@ -41,6 +41,15 @@ T Point3<T>::getY() { return y; }
 
 template<typename T>
 T Point3<T>::getZ() { return z; }
+
+template<typename T>
+void Point3<T>::setX(T x) { this->x = x; }
+
+template<typename T>
+void Point3<T>::setY(T y) { this->y = y; }
+
+template<typename T>
+void Point3<T>::setZ(T z) { this->z = z; }
 }
 
 #endif
