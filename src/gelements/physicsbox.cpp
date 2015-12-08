@@ -32,41 +32,53 @@ void PhysicsBox::render()
 	glMultMatrixf(glm::value_ptr(glm::mat4_cast(rotation)));
 	glBegin(GL_QUADS);
 	{
+		//xy side
 		glColor3f(1, 0, 0);
-		glVertex3f(-width, -depth, -height);
-		glVertex3f(-width, depth, -height);
-		glVertex3f(width, depth, -height);
-		glVertex3f(width, -depth, -height);
+		glNormal3f(0, 0, -1);
+		glVertex3f(-width, -height, -depth);
+		glVertex3f(-width, height, -depth);
+		glVertex3f(width, height, -depth);
+		glVertex3f(width, -height, -depth);
 
+		//top
 		glColor3f(0, 1, 0);
-		glVertex3f(-width, -depth, -height);
-		glVertex3f(width, -depth, -height);
-		glVertex3f(width, -depth, height);
-		glVertex3f(-width, -depth, height);
+		glNormal3f(0, -1, 0);
+		glVertex3f(-width, -height, -depth);
+		glVertex3f(width, -height, -depth);
+		glVertex3f(width, -height, depth);
+		glVertex3f(-width, -height, depth);
 
+		//yz side
 		glColor3f(0, 0, 1);
-		glVertex3f(-width, -depth, -height);
-		glVertex3f(-width, -depth, height);
-		glVertex3f(-width, depth, height);
-		glVertex3f(-width, depth, -height);
+		glNormal3f(-1, 0, 0);
+		glVertex3f(-width, -height, -depth);
+		glVertex3f(-width, -height, depth);
+		glVertex3f(-width, height, depth);
+		glVertex3f(-width, height, -depth);
 
+		//xy side
 		glColor3f(1, 0, 0);
-		glVertex3f(width, depth, height);
-		glVertex3f(-width, depth, height);
-		glVertex3f(-width, -depth, height);
-		glVertex3f(width, -depth, height);
+		glNormal3f(0, 0, 1);
+		glVertex3f(width, height, depth);
+		glVertex3f(-width, height, depth);
+		glVertex3f(-width, -height, depth);
+		glVertex3f(width, -height, depth);
 
+		//bottom
 		glColor3f(0, 1, 0);
-		glVertex3f(width, depth, height);
-		glVertex3f(width, depth, -height);
-		glVertex3f(-width, depth, -height);
-		glVertex3f(-width, depth, height);
+		glNormal3f(0, 1, 0);
+		glVertex3f(width, height, depth);
+		glVertex3f(width, height, -depth);
+		glVertex3f(-width, height, -depth);
+		glVertex3f(-width, height, depth);
 
+		//yz side
 		glColor3f(0, 0, 1);
-		glVertex3f(width, depth, height);
-		glVertex3f(width, -depth, height);
-		glVertex3f(width, -depth, -height);
-		glVertex3f(width, depth, -height);
+		glNormal3f(1, 0, 0);
+		glVertex3f(width, height, depth);
+		glVertex3f(width, -height, depth);
+		glVertex3f(width, -height, -depth);
+		glVertex3f(width, height, -depth);
 	}
 	glEnd();
 	glMultTransposeMatrixf(glm::value_ptr(glm::mat4_cast(rotation)));

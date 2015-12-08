@@ -29,36 +29,42 @@ void Box::render()
 	glBegin(GL_QUADS);
 	{
 		glColor3f(1, 0, 0);
+		glNormal3f(0, 0, -1);
 		glVertex3f(0, 0, 0);
 		glVertex3f(0, depth, 0);
 		glVertex3f(width, depth, 0);
 		glVertex3f(width, 0, 0);
 
 		glColor3f(0, 1, 0);
+		glNormal3f(0, -1, 0);
 		glVertex3f(0, 0, 0);
 		glVertex3f(width, 0, 0);
 		glVertex3f(width, 0, height);
 		glVertex3f(0, 0, height);
 
 		glColor3f(0, 0, 1);
+		glNormal3f(-1, 0, 0);
 		glVertex3f(0, 0, 0);
 		glVertex3f(0, 0, height);
 		glVertex3f(0, depth, height);
 		glVertex3f(0, depth, 0);
 
 		glColor3f(1, 0, 0);
+		glNormal3f(0, 0, 1);
 		glVertex3f(width, depth, height);
 		glVertex3f(0, depth, height);
 		glVertex3f(0, 0, height);
 		glVertex3f(width, 0, height);
 
 		glColor3f(0, 1, 0);
+		glNormal3f(0, 1, 0);
 		glVertex3f(width, depth, height);
 		glVertex3f(width, depth, 0);
 		glVertex3f(0, depth, 0);
 		glVertex3f(0, depth, height);
 
 		glColor3f(0, 0, 1);
+		glNormal3f(1, 0, 0);
 		glVertex3f(width, depth, height);
 		glVertex3f(width, 0, height);
 		glVertex3f(width, 0, 0);

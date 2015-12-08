@@ -24,13 +24,13 @@ void UVSphere::update(double deltaT)
 
 void UVSphere::render()
 {
-	glRotatef(90, 1, 0, 0);
 	glTranslatef(position.getX(), position.getY(), position.getZ());
+	glRotatef(90, 1, 0, 0);
 	double thetarplusdelta;
 	double c=3.141592654/180.0;
 	double x1,y1,z1,phi0;
 	phi0=60;
-	glColor3f(0, 0, 1);
+	glColor3f(1, 1, 0);
 	glBegin(GL_QUAD_STRIP);
 	for (double phi=-phi0; phi<phi0; phi+=angleDelta) {
 		double phir=c*phi; //Phi in radians
@@ -51,7 +51,7 @@ void UVSphere::render()
 	glEnd();
 
 	//bottom
-	glColor3f(0, 1, 0);
+	glColor3f(1, 1, 0);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex3d(0,0,radius); //Initial point
 	z1=radius * sin(c*phi0);
@@ -64,7 +64,7 @@ void UVSphere::render()
 	glEnd();
 
 	//top
-	glColor3f(1, 0, 0);
+	glColor3f(1, 1, 0);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex3d(0,0,-radius); //Initial point
 	z1=-radius * sin(c*phi0);
@@ -75,8 +75,8 @@ void UVSphere::render()
 		glVertex3d(x1,y1,z1);
 	}
 	glEnd();
-	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 	glRotatef(-90, 1, 0, 0);
+	glTranslatef(-position.getX(), -position.getY(), -position.getZ());
 }
 
 UVSphere::~UVSphere()

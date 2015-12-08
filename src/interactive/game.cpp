@@ -12,7 +12,7 @@
 #include "../gengine/configmanager.h"
 
 Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager)
-: objMesh(-5, 0, -13), pBox(10, 10, 10, 5, 5, 5), pBox2(10, 20, 18, 4, 4, 4)
+: objMesh(-5, 0, -13), pBox(10, 10, 10, 5, 5, 5), pBox2(10, 20, 18, 4, 4, 4), light0(0, 20, 0, GL_LIGHT0)
 {
 	this->iManager = iManager;
 	this->wManager = wManager;
@@ -46,7 +46,7 @@ Game::Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager
 	void* spherePtr = gStack->push(sizeof(Sphere));
 	sphere = new(spherePtr) Sphere(-5, 0, 5, 5);
 	void* uvSpherePtr = gStack->push(sizeof(UVSphere));
-	uvSphere = new(uvSpherePtr) UVSphere(-5, 0, 0, 2, 20);
+	uvSphere = new(uvSpherePtr) UVSphere(0, 20, 0, 2, 20);
 
 	//	objMesh.loadObj("resources/complex.obj");
 	pManager->addPhysicsBox(&pBox);
@@ -85,6 +85,31 @@ void Game::render()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	// flashlight occurs before camera transform because flashlight always points forward
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::F)){
+		float lightAmbient[4]   = {0.0f, 0.0f, 0.0f, 1.0f};
+		float lightDiffuse[4]   = {1.0f, 1.0f, 1.0f, 1.0f};
+		float lightSpecular[4]  = {1.0f, 1.0f, 1.0f, 1.0f};
+		float lightPosition[4]  = {0.0f, 0.0f, 0.0, 1.0f};
+		float lightDirection[4] = {0.0f, 0.0f, 1.0f, 0.0f};
+
+		glLightfv(GL_LIGHT1, GL_AMBIENT, lightAmbient);
+		glLightfv(GL_LIGHT1, GL_DIFFUSE, lightDiffuse);
+		glLightfv(GL_LIGHT1, GL_SPECULAR, lightSpecular);
+		glLightfv(GL_LIGHT1, GL_POSITION, lightPosition);
+		glLightf (GL_LIGHT1, GL_SPOT_CUTOFF, 15.f);
+
+		glEnable(GL_COLOR_MATERIAL);
+		glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+		glShadeModel(GL_FLAT);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT1);
+	}
+	else {
+		glDisable(GL_LIGHT1);
+	}
+
 	camera.transform();
 
 	//	glColor3f(1.0f, 1.0f, 0.5f);
@@ -109,13 +134,26 @@ void Game::render()
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisable(GL_TEXTURE_2D);
+
+
+
 	axes.render();
-//	pManager->debugDrawWorld();
-	//	box->render();
-	sphere->render();
-	//	pyramid->render();
+	glColor3f(.5, .5, .5);
+	glNormal3f(0, -1, 0);
+	glBegin(GL_QUADS);
+	{
+		glVertex3f(-50, -8, -50);
+		glVertex3f(-50, -8, 50);
+		glVertex3f(50, -8, 50);
+		glVertex3f(50, -8, -50);
+	}
+	glEnd();
+	//pManager->debugDrawWorld();
+	//box->render();
+	//sphere->render();
+	//pyramid->render();
 	uvSphere->render();
-	//	objMesh.render();
+	//objMesh.render();
 	pBox.render();
 	pBox2.render();
 	for (unsigned i = 0; i < pBoxes.size(); i++)
@@ -123,6 +161,7 @@ void Game::render()
 		PhysicsBox* pb = pBoxes[i];
 		pb->render();
 	}
+	light0.render();
 }
 
 Game::~Game()

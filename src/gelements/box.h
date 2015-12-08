@@ -12,7 +12,7 @@
 
 namespace gelements
 {
-class Box : protected GameObject
+class Box : public GameObject
 {
 private:
 	float width, height, depth;

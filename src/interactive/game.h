@@ -16,6 +16,7 @@
 #include "../gelements/uvsphere.h"
 #include "../gelements/objmesh.h"
 #include "../gelements/physicsbox.h"
+#include "../gelements/light.h"
 #include "../gengine/gamestack.h"
 #include "../gengine/gameconfig.h"
 #include "../gengine/windowmanager.h"
@@ -27,7 +28,6 @@
 
 using namespace gelements;
 using namespace gengine;
-
 
 class InteractiveManager; // forward declaration because of circular dependency
 
@@ -52,6 +52,7 @@ private:
 	PhysicsBox pBox;
 	PhysicsBox pBox2;
 	std::vector<PhysicsBox*> pBoxes;
+	Light light0;
 public:
 	Game(InteractiveManager* iManager, WindowManager* wManager, PhysicsManager* pManager);
 	void update(double deltaT);

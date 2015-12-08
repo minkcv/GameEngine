@@ -52,35 +52,6 @@ PhysicsManager::PhysicsManager()
 		//add the body to the dynamics world
 		dynamicsWorld->addRigidBody(body);
 	}
-	{
-		//create a dynamic rigidbody
-
-		//btCollisionShape* colShape = new btBoxShape(btVector3(1,1,1));
-		btCollisionShape* colShape = new btSphereShape(btScalar(1.));
-		collisionShapes.push_back(colShape);
-
-		/// Create Dynamic Objects
-		btTransform startTransform;
-		startTransform.setIdentity();
-
-		btScalar	mass(1.f);
-
-		//rigidbody is dynamic if and only if mass is non zero, otherwise static
-		bool isDynamic = (mass != 0.f);
-
-		btVector3 localInertia(0,0,0);
-		if (isDynamic)
-			colShape->calculateLocalInertia(mass,localInertia);
-
-		startTransform.setOrigin(btVector3(2,10,0));
-
-		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-		btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,colShape,localInertia);
-		btRigidBody* body = new btRigidBody(rbInfo);
-
-		dynamicsWorld->addRigidBody(body);
-	}
 }
 
 //create a dynamic rigidbody
@@ -113,31 +84,9 @@ void PhysicsManager::addPhysicsBox(PhysicsBox* pb)
 	pb->setRigidBody(body);
 }
 
-void PhysicsManager::testPhysics()
-{
-	for(int i = 0; i < 100; i++){
-		dynamicsWorld->stepSimulation(1.f/60.f, 10);
-
-		//print positions of all objects
-		for(int j = dynamicsWorld->getNumCollisionObjects() - 1; j 	>= 0; j--){
-			btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[j];
-			btRigidBody* body = btRigidBody::upcast(obj);
-			btTransform trans;
-			if(body && body->getMotionState()){
-				body->getMotionState()->getWorldTransform(trans);
-			}
-			else{
-				trans = obj->getWorldTransform();
-			}
-			printf (" world pos object %d = %f ,%f ,%f\n",j , float ( trans . getOrigin () . getX () ) ,float (
-					trans.getOrigin().getY()) ,float (trans.getOrigin ().getZ())) ;
-		}
-	}
-}
-
 void PhysicsManager::update()
 {
-	dynamicsWorld->stepSimulation(1.f/60.f, 10);
+	dynamicsWorld->stepSimulation(1.f/30.f, 10);
 }
 
 void PhysicsManager::debugDrawWorld()
